@@ -87,6 +87,39 @@ speedDialView.setOptionFabSelectedListener(new SpeedDialView.OnOptionFabSelected
 ```
 
 ### Optional steps
+#### Customizing the items
+The `SpeedDialActionItem.Builder` provides several setters to customize the aspect of one item:
+
+```java
+mSpeedDialView.addFabOptionItem(
+        new SpeedDialActionItem.Builder(R.id.fab_custom_color, R.drawable.ic_custom_color)
+                .setFabBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.material_white_1000, getTheme()))
+                .setFabImageTintColor(ResourcesCompat.getColor(getResources(), R.color.inbox_primary, getTheme()))
+                .setLabel(getString(R.string.label_custom_color))
+                .setLabelColor(Color.WHITE)
+                .setLabelBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.inbox_primary, getTheme()))
+                .setLabelClickable(false)
+                .create()
+);
+```
+Is is also possible to specify a theme to easily change the FAB background and ripple effect color:
+
+```java
+mSpeedDialView.addFabOptionItem(
+        new SpeedDialActionItem.Builder(R.id.fab_custom_theme, R.drawable.ic_theme_white_24dp)
+                .setLabel(getString(R.string.label_custom_theme))
+                .setTheme(R.style.AppTheme_Purple)
+                .create());
+```
+```xml
+<style name="AppTheme.Purple" parent="AppTheme">
+    <item name="colorPrimary">@color/material_purple_500</item>
+    <item name="colorPrimaryDark">@color/material_purple_700</item>
+    <item name="colorAccent">@color/material_purple_a700</item>
+    <item name="colorControlHighlight">@color/material_purple_200</item>
+</style>
+```
+
 #### Adding an overlay/touch guard when the menu is open (like Inbox by Gmail)
 You simply need to add the `SpeedDialOverlayLayout` to your layout:
 
